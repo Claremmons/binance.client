@@ -1,0 +1,33 @@
+from binance.client import Client
+
+# Замените на свои ключи API Binance
+api_key = 'YOUR_API_KEY'
+api_secret = 'YOUR_API_SECRET'
+
+# Создаем клиент Binance
+client = Client(api_key, api_secret)
+
+def get_account_info():
+    # Получаем информацию об аккаунте
+    account_info = client.get_account()
+    return account_info
+
+def get_symbol_price(symbol='BTCUSDT'):
+    # Получаем текущую цену заданной криптовалютной пары
+    symbol_price = client.get_symbol_ticker(symbol=symbol)
+    return symbol_price
+
+if __name__ == "__main__":
+    try:
+        # Получаем информацию об аккаунте
+        account_info = get_account_info()
+        print("Информация об аккаунте:")
+        print(account_info)
+
+        # Получаем текущую цену криптовалютной пары BTCUSDT
+        symbol_price = get_symbol_price()
+        print("\nТекущая цена BTCUSDT:")
+        print(symbol_price)
+
+    except Exception as e:
+        print(f"Произошла ошибка: {e}")
